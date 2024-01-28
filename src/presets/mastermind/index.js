@@ -5,7 +5,7 @@ import checkbox from './checkbox'
 import chips from './chips'
 import dropdown from './dropdown'
 import inputgroup from './inputgroup'
-import inputswitch from './inputswitch'
+import progressbar from './progressbar'
 import inputtext from './inputtext'
 import password from './password'
 import radiobutton from './radiobutton'
@@ -29,7 +29,7 @@ export default {
   chips,
   dropdown,
   inputgroup,
-  inputswitch,
+  progressbar,
   inputtext,
   password,
   radiobutton,
