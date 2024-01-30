@@ -70,6 +70,4 @@ function onCreateRequirements() {
   emit('on-create-requirements')
   createRequirements()
 }
-
-// const { createShippingQuote } = productStore
 </script>

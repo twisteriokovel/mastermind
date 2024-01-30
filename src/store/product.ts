@@ -26,6 +26,7 @@ import {
   COLORSPEC_GROUP,
   SHIP_TO,
   SHIP_FROM,
+  SHIPPER,
 } from '@/utils/constants'
 import { isRunsizeInRange, toCurrency } from '@/utils/functions'
 
@@ -245,43 +246,22 @@ export const useProductStore = defineStore('product', {
           skip_files: true,
           ship_to: SHIP_TO,
           ship_from: SHIP_FROM,
+          shipper: SHIPPER,
           job_name: 'job001-001',
-          shipper: {
-            shipping_method: 'FREE UPS Ground',
-            shipping_code: '03f',
-          },
-          ship_from_facility: 'DAY',
         }
         const payload: OrderPayload = {
           order_id: 'test001',
           is_test_order: true,
           jobs: [printJob],
+          payment: {
+            profile_token: '11111111',
+          },
         }
         const { data } = await createOrder(payload)
         console.log(data)
-        // this.shippingOptions = data.job.facilities[0].shipping_options
       } catch (error) {
         console.error(error)
       }
     },
-
-    // async getProductConfiguration(type: keyof typeof ProductType) {
-    //   useProductStore().$reset()
-
-    //   const { data } = await ProductsService.getProductConfiguration(type)
-
-    //   if (!data) {
-    //     return
-    //   }
-
-    //   const { properties, excludes } = data
-
-    //   this.productProperties = properties
-    //   this.excludesList = excludes
-    // },
-
-    // sendOrderDetails() {
-    //   console.log(this.selectedProperties)
-    // }
   },
 })

@@ -13,6 +13,8 @@ export default defineConfig({
     }),
   ],
 
+  base: '/mastermind/',
+
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),

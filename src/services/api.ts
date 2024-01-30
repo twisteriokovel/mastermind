@@ -1,4 +1,4 @@
-import axios, { AxiosRequestConfig } from 'axios'
+import axios, { AxiosRequestConfig, AxiosHeaders } from 'axios'
 import { API_BASE_URL, API_PUBLIC_KEY, API_PRIVATE_KEY } from '@/env.const'
 import sha256 from 'crypto-js/sha256'
 import hmacSHA256 from 'crypto-js/hmac-sha256'
@@ -35,10 +35,10 @@ axiosInstance.interceptors.request.use(
         signature,
       }
     } else {
-      config.headers = {
-        ...config.headers,
-        Authorization: `Bearer ${API_PUBLIC_KEY}:${signature}`,
-      }
+      ;(config.headers as AxiosHeaders).set(
+        'Authorization',
+        `Bearer ${API_PUBLIC_KEY}:${signature}`,
+      )
     }
 
     return config

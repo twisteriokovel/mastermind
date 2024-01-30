@@ -118,6 +118,9 @@ export interface OrderPayload {
   coupon_code?: string
   skip_conformation?: boolean
   jobs: PrintJob[]
+  payment: {
+    profile_token: string
+  }
 }
 
 export interface ShippingOption {

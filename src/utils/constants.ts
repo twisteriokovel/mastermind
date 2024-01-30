@@ -38,3 +38,8 @@ export const SHIP_FROM = {
   zipcode: '01915',
   country: 'US',
 }
+
+export const SHIPPER = {
+  shipping_method: 'FREE UPS Ground',
+  shipping_code: '03f',
+}
