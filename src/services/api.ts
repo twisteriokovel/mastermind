@@ -7,6 +7,7 @@ import type {
   ShippingQuotePayload,
   RequirementsPayload,
   OrderPayload,
+  FileUploadPayload,
 } from '@/models'
 
 const axiosInstance = axios.create({
@@ -89,8 +90,15 @@ const createShippingQuote = (payload: ShippingQuotePayload) =>
 const createRequirements = (payload: RequirementsPayload) =>
   ApiService.post('/requirements/products', payload)
 
+const getPaymentProfiles = () => ApiService.get('/paymentprofiles')
+
 const createOrder = (payload: OrderPayload) =>
-  ApiService.post('/orders ', payload)
+  ApiService.post('/orders', payload)
+
+const getJobStatus = (id: string) => ApiService.get(`/orders/${id}/status`)
+
+const createFile = (payload: FileUploadPayload) =>
+  ApiService.post('/files', payload)
 
 export {
   getProduct,
@@ -99,4 +107,7 @@ export {
   createShippingQuote,
   createRequirements,
   createOrder,
+  getPaymentProfiles,
+  getJobStatus,
+  createFile,
 }

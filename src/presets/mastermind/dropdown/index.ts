@@ -1,5 +1,11 @@
 export default {
-  root: ({ props, state }) => ({
+  root: ({
+    props,
+    state,
+  }: {
+    props: Record<string, string>
+    state: Record<string, string>
+  }) => ({
     class: [
       // Display and Position
       'inline-flex',
@@ -34,7 +40,7 @@ export default {
       },
     ],
   }),
-  input: ({ props }) => ({
+  input: ({ props }: { props: Record<string, string> }) => ({
     class: [
       //Font
       'font-sans',
@@ -122,7 +128,7 @@ export default {
   list: {
     class: 'py-3 list-none m-0',
   },
-  item: ({ context }) => ({
+  item: ({ context }: { context: Record<string, string> }) => ({
     class: [
       // Font
       'font-normal',

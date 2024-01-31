@@ -14,7 +14,7 @@ export default {
       'bg-surface-100 dark:bg-surface-700',
     ],
   },
-  value: ({ props }) => ({
+  value: ({ props }: { props: Record<string, string> }) => ({
     class: [
       // Flexbox & Overflow & Position
       {

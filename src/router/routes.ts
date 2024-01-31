@@ -2,7 +2,7 @@ import type { RouteRecordRaw } from 'vue-router'
 
 import HomePage from '../pages/Home.vue'
 const ProductPage = () => import('@/pages/Product.vue')
-const CartPage = () => import('@/pages/Cart.vue')
+const OrderPage = () => import('@/pages/Order.vue')
 
 export const routes: Array<RouteRecordRaw> = [
   {
@@ -14,7 +14,7 @@ export const routes: Array<RouteRecordRaw> = [
     component: ProductPage,
   },
   {
-    path: '/cart',
-    component: CartPage,
+    path: '/order/:orderId',
+    component: OrderPage,
   },
 ]

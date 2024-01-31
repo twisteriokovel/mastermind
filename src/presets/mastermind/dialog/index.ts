@@ -1,5 +1,5 @@
 export default {
-  root: ({ state }) => ({
+  root: ({ state }: { state: Record<string, string> }) => ({
     class: [
       // Shape
       'rounded-lg',
@@ -142,19 +142,12 @@ export default {
       'h-4',
     ],
   },
-  content: ({ state, instance }) => ({
+  content: () => ({
     class: [
       // Spacing
       'px-6',
       'pb-8',
       'pt-0',
-
-      // Shape
-      {
-        grow: state.maximized,
-        'rounded-bl-lg': !instance.$slots.footer,
-        'rounded-br-lg': !instance.$slots.footer,
-      },
 
       // Colors
       'bg-surface-0 dark:bg-surface-800',
@@ -185,7 +178,13 @@ export default {
       'text-surface-700 dark:text-surface-0/80',
     ],
   },
-  mask: ({ props, state }) => ({
+  mask: ({
+    props,
+    state,
+  }: {
+    props: Record<string, string>
+    state: Record<string, string>
+  }) => ({
     class: [
       // Transitions
       'transition',
@@ -196,7 +195,7 @@ export default {
       { 'bg-black/40': props.modal, 'backdrop-blur-sm': props.modal },
     ],
   }),
-  transition: ({ props }) => {
+  transition: ({ props }: { props: Record<string, string> }) => {
     return props.position === 'top'
       ? {
           enterFromClass:

@@ -30,6 +30,22 @@
         placeholder="Select runsize"
       />
     </div>
+
+    <div>
+      <p class="mb-1 text-sm font-semibold">File management</p>
+
+      <div v-if="fileData" class="flex items-center truncate">
+        <i class="pi pi-file-pdf mr-1"></i>
+        <p>{{ fileData.customer_filename }}</p>
+      </div>
+      <template v-else>
+        <p class="text-sm mb-3">
+          Uploading a testing file using the predefined URL
+        </p>
+
+        <Button type="button" @click="uploadFile"> Upload file </Button>
+      </template>
+    </div>
   </div>
 </template>
 
@@ -43,5 +59,7 @@ const {
   selectedConfiguration,
   runsizeOptionsGroup,
   selectedRunsize,
+  fileData,
 } = storeToRefs(productStore)
+const { uploadFile } = productStore
 </script>

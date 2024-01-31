@@ -5,7 +5,7 @@ import {
   getProductOptionPrices,
   createShippingQuote,
   createRequirements,
-  createOrder,
+  createFile,
 } from '@/services/api'
 import type {
   Product,
@@ -18,15 +18,12 @@ import type {
   OptionPrice,
   ShippingOption,
   Address,
-  OrderPayload,
 } from '@/models'
 import {
   RUNSIZE_GROUP,
   TURN_AROUND_TIME_GROUP,
   COLORSPEC_GROUP,
-  SHIP_TO,
-  SHIP_FROM,
-  SHIPPER,
+  TEST_FILE_URL,
 } from '@/utils/constants'
 import { isRunsizeInRange, toCurrency } from '@/utils/functions'
 
@@ -40,6 +37,7 @@ interface ProductStore {
   shippingOptions: ShippingOption[] | null
   selectedShippingOption: ShippingOption | null
   fileRequirements: Record<string, string>[]
+  fileData: Record<string, string> | null
 }
 
 export const useProductStore = defineStore('product', {
@@ -53,6 +51,7 @@ export const useProductStore = defineStore('product', {
     shippingOptions: null,
     selectedShippingOption: null,
     fileRequirements: [],
+    fileData: null,
   }),
 
   getters: {
@@ -171,6 +170,18 @@ export const useProductStore = defineStore('product', {
   },
 
   actions: {
+    async uploadFile() {
+      try {
+        const payload = {
+          path: [TEST_FILE_URL],
+          preflight: true,
+        }
+        const { data } = await createFile(payload)
+        this.fileData = data.files[0]
+      } catch (error) {
+        console.error(error)
+      }
+    },
     async fetchProductDetails(id: string) {
       this.productId = id
       try {
@@ -180,7 +191,6 @@ export const useProductStore = defineStore('product', {
         console.error(error)
       }
     },
-
     async fetchProductBasePrices(id: string) {
       try {
         const { data } = await getProductBasePrices(id)
@@ -189,7 +199,6 @@ export const useProductStore = defineStore('product', {
         console.error(error)
       }
     },
-
     async fetchProductOptionPrices(payload: ProductOptionPricePayload) {
       try {
         const { data } = await getProductOptionPrices(payload)
@@ -214,7 +223,6 @@ export const useProductStore = defineStore('product', {
         console.error(error)
       }
     },
-
     async createShippingQuote(shipping_address: Address) {
       try {
         const payload = {
@@ -229,36 +237,6 @@ export const useProductStore = defineStore('product', {
         }
         const { data } = await createShippingQuote(payload)
         this.shippingOptions = data.job.facilities[0].shipping_options
-      } catch (error) {
-        console.error(error)
-      }
-    },
-
-    async createOrder() {
-      try {
-        const printJob = {
-          product_uuid: this.productId,
-          runsize_uuid: this.selectedRunsize?.option_uuid ?? '',
-          turnaround_uuid: this.calculatedTurnAroundTime?.option_uuid ?? '',
-          colorspec_uuid: this.selectedColorspec?.option_uuid ?? '',
-          option_uuids: this.payloadSelectedOptions,
-          dropship: true,
-          skip_files: true,
-          ship_to: SHIP_TO,
-          ship_from: SHIP_FROM,
-          shipper: SHIPPER,
-          job_name: 'job001-001',
-        }
-        const payload: OrderPayload = {
-          order_id: 'test001',
-          is_test_order: true,
-          jobs: [printJob],
-          payment: {
-            profile_token: '11111111',
-          },
-        }
-        const { data } = await createOrder(payload)
-        console.log(data)
       } catch (error) {
         console.error(error)
       }

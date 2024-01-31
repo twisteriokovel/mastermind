@@ -12,6 +12,7 @@ declare module 'vue' {
     Dialog: typeof import('primevue/dialog')['default']
     Dropdown: typeof import('primevue/dropdown')['default']
     InputText: typeof import('primevue/inputtext')['default']
+    JobItem: typeof import('./src/components/order/JobItem.vue')['default']
     Option: typeof import('./src/components/product/Option.vue')['default']
     OptionsGroup: typeof import('./src/components/product/OptionsGroup.vue')['default']
     ProductSummary: typeof import('./src/components/product/ProductSummary.vue')['default']

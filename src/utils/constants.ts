@@ -29,7 +29,7 @@ export const SHIP_FROM = {
   company: 'My Print Company',
   firstname: 'Mike',
   lastname: 'Doe',
-  email: '',
+  email: 'twisterio.kovel@gmail.com',
   phone: '888-888-8888',
   address: '100 CUMMINGS CTR',
   address2: '',
@@ -43,3 +43,6 @@ export const SHIPPER = {
   shipping_method: 'FREE UPS Ground',
   shipping_code: '03f',
 }
+
+export const TEST_FILE_URL =
+  'https://d1csarkz8obe9u.cloudfront.net/posterpreviews/just-5-days-to-go-black-and-white-and-grey-co-design-template-57961a04d383f8d500c22a3280d184a6_screen.jpg?ts=1706123109'

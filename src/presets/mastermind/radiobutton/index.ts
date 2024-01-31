@@ -15,7 +15,13 @@ export default {
       'select-none',
     ],
   },
-  input: ({ props, state }) => ({
+  input: ({
+    props,
+    state,
+  }: {
+    props: Record<string, string>
+    state: Record<string, string>
+  }) => ({
     class: [
       // Flexbox
       'flex justify-center items-center',
@@ -55,7 +61,7 @@ export default {
       },
     ],
   }),
-  icon: ({ props }) => ({
+  icon: ({ props }: { props: Record<string, string> }) => ({
     class: [
       'block',
 

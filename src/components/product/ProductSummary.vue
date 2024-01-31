@@ -41,7 +41,9 @@
       <Button outlined @click="onCreateRequirements">
         Create requirements
       </Button>
-      <Button @click="createOrder">Submit order</Button>
+      <Button :loading="isProcessingOrder" @click="createOrder">
+        Submit order
+      </Button>
     </div>
   </div>
 </template>
@@ -49,6 +51,7 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia'
 import { useProductStore } from '@/store/product'
+import { useOrderStore } from '@/store/order'
 import { toCurrency } from '@/utils/functions'
 
 const emit = defineEmits<{
@@ -57,6 +60,8 @@ const emit = defineEmits<{
 }>()
 
 const productStore = useProductStore()
+const orderStore = useOrderStore()
+
 const {
   productBasePrice,
   productOptionPrice,
@@ -64,7 +69,10 @@ const {
   calculatedTurnAroundTime,
   totalPrice,
 } = storeToRefs(productStore)
-const { createRequirements, createOrder } = productStore
+const { isProcessingOrder } = storeToRefs(orderStore)
+
+const { createRequirements } = productStore
+const { createOrder } = orderStore
 
 function onCreateRequirements() {
   emit('on-create-requirements')

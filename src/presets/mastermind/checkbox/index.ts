@@ -16,7 +16,13 @@ export default {
       'select-none',
     ],
   },
-  input: ({ props, context }) => ({
+  input: ({
+    props,
+    context,
+  }: {
+    props: Record<string, string>
+    context: Record<string, string>
+  }) => ({
     class: [
       // Alignment
       'flex',

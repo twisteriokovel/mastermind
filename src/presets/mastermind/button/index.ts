@@ -1,5 +1,11 @@
 export default {
-  root: ({ props, context, parent }) => ({
+  root: ({
+    props,
+    context,
+  }: {
+    props: Record<string, string>
+    context: Record<string, string>
+  }) => ({
     class: [
       'relative',
 
@@ -17,10 +23,6 @@ export default {
       // Shapes
       { 'shadow-lg': props.raised },
       { 'rounded-md': !props.rounded, 'rounded-full': props.rounded },
-      {
-        'rounded-none first:rounded-l-md last:rounded-r-md':
-          parent.instance.$name == 'InputGroup',
-      },
 
       // Link Button
       { 'text-primary-600 bg-transparent border-transparent': props.link },
@@ -422,7 +424,7 @@ export default {
       'cursor-pointer overflow-hidden select-none',
     ],
   }),
-  label: ({ props }) => ({
+  label: ({ props }: { props: Record<string, string> }) => ({
     class: [
       'duration-200',
       'font-bold',
@@ -432,7 +434,7 @@ export default {
       { 'flex-1': props.label !== null, 'invisible w-0': props.label == null },
     ],
   }),
-  icon: ({ props }) => ({
+  icon: ({ props }: { props: Record<string, string> }) => ({
     class: [
       'mx-0',
       {
@@ -443,7 +445,7 @@ export default {
       },
     ],
   }),
-  loadingicon: ({ props }) => ({
+  loadingicon: ({ props }: { props: Record<string, string> }) => ({
     class: [
       'h-4 w-4',
       'mx-0',
@@ -456,7 +458,7 @@ export default {
       'animate-spin',
     ],
   }),
-  badge: ({ props }) => ({
+  badge: ({ props }: { props: Record<string, string> }) => ({
     class: [
       {
         'ml-2 w-4 h-4 leading-none flex items-center justify-center':
