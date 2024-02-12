@@ -1,5 +1,12 @@
 <template>
-  <div class="bg-white p-4 shadow-md rounded-md max-w-md">
+  <div
+    class="p-4 shadow-md rounded-md max-w-md"
+    :class="[
+      group.product_option_group_name === 'Colorspec'
+        ? 'order-1 bg-red-50'
+        : 'order-2 bg-white',
+    ]"
+  >
     <h2 class="text-md font-bold mb-2">
       {{ group.product_option_group_name }}
     </h2>

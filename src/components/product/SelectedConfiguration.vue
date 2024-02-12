@@ -40,7 +40,8 @@
       </div>
       <template v-else>
         <p class="text-sm mb-3">
-          Uploading a testing file using the predefined URL
+          The URL of the file is already hardcoded, press this button to check
+          how the file upload works
         </p>
 
         <Button type="button" @click="uploadFile"> Upload file </Button>
